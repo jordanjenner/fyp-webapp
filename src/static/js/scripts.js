@@ -27,7 +27,13 @@ $(document).ready(function() {
       $.post('/api/analyse-address/' + address + '/', {csrfmiddlewaretoken: csrftoken}).done(function(data){
         var percentage = Math.round(data.percentage*100)
         console.log(percentage)
-        $('#info_dropdown').append('<p class="info-text percent mt-2 mb-2 ml-2">' + percentage + '%</p>')
+        $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-start flex-nowrap"></div>')
+        $('#info_dropdown_body').append('<div id="info_percentage_col" class="mr-5 ml-4"></div>')
+        $('#info_dropdown_body').append('<div id="info_flavour_text" class="flex-grow-1 m-2 info-text"></div>')
+        $('#info_percentage_col').append('<p class="info-text percent">' + percentage + '%</p>')
+        $('#info_flavour_text').append('<p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>')
+        $('#info_dropdown').append('<div id="info_dropdown_footer" class="info-dropdown-footer row m-0 w-100 align-items-center justify-content-center"></div>')
+        $('#info_dropdown_footer').append('<i class="fas fa-chevron-up fa-2x info-icon"></i>')
         if (percentage < 40) {
           $('#info_dropdown').toggleClass('success')
         } else if (percentage >= 40 && percentage < 75) {
