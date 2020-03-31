@@ -2,3 +2,4 @@ lib/python3.6/
 bin/
 include/
 src/bitpredict/config.py
+*.pyc
