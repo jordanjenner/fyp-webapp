@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Potra";
+  src: url("/static/fonts/Potra.ttf");
+}
+
+@font-face {
+  font-family: "Cubic";
+  src: url("/static/fonts/cubic.ttf");
+}
+
+.index-form-group {
+  width: 75% !important
+}
+
+body {
+  background-image: linear-gradient(-130deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
+
+}
+
+.logo-title {
+  font-family: Potra;
+  font-size: 100px; 
+  padding: 0;
+  margin: 0;
+}
+
+.search-bar-remove-radius {
+  border-radius: .3rem .3rem 0rem 0rem !important;
+}
+
+.test-div {
+  height: 50px;
+  border-width: 50px;
+  border: 1px solid #ced4da;
+  border-radius: .3rem;
+  background-color: green;
+  margin-top: -.3rem;
+}
+
+#71FFD6
+#9FBCFF
