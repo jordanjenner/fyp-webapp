@@ -14,7 +14,7 @@ $(document).ready(function() {
         $('#info_dropdown').removeClass('success')
         analyse_address()
         $('#search_button').prop('disabled', false)
-      }, 500)   
+      }, 750)   
     } else {
       analyse_address()
       $('#search_button').prop('disabled', false)
@@ -32,8 +32,12 @@ $(document).ready(function() {
         $('#info_dropdown_body').append('<div id="info_flavour_text" class="flex-grow-1 m-2 info-text"></div>')
         $('#info_percentage_col').append('<p class="info-text percent">' + percentage + '%</p>')
         $('#info_flavour_text').append('<p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>')
-        $('#info_dropdown').append('<div id="info_dropdown_footer" class="info-dropdown-footer row m-0 w-100 align-items-center justify-content-center"></div>')
+        $('#info_dropdown').append('<a id="info_dropdown_footer" class="info-dropdown-footer row m-0 w-100 align-items-center justify-content-center"></a>')
         $('#info_dropdown_footer').append('<i class="fas fa-chevron-up fa-2x info-icon"></i>')
+        $('#info_dropdown_footer').click(function(){
+          $('#info_dropdown_footer').prop('disabled', true)
+          collapse_dropdown()
+        })
         if (percentage < 40) {
           $('#info_dropdown').toggleClass('success')
         } else if (percentage >= 40 && percentage < 75) {
@@ -75,6 +79,19 @@ $(document).ready(function() {
       console.log(address.length)
       return false
     }
+  }
+
+  function collapse_dropdown() {    
+    $('#info_dropdown').toggleClass('expand')
+    setTimeout(function(){
+      $('#info_dropdown').empty()
+      $('#info_dropdown').removeClass('danger')
+      $('#info_dropdown').removeClass('warning')
+      $('#info_dropdown').removeClass('working')
+      $('#info_dropdown').removeClass('success')
+      $('#address_field').removeClass('search-bar-border-radius')
+      $('#search_button').removeClass('search-button-border-radius')
+    }, 750)
   }
 
   function info_dropdown(reason) {

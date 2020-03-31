@@ -35,7 +35,7 @@ body {
   border-radius: 0rem 0rem .3rem .3rem;
   margin-top: -4px;
   overflow: hidden;
-  transition: max-height .5s ease;
+  transition: max-height 0.75s ease;
 }
 
 .info-text {
@@ -48,6 +48,7 @@ body {
 
 .info-dropdown-footer {
   background-color: white;
+  cursor: pointer;
 }
 
 .info-text.percent {
