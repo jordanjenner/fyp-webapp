@@ -35,17 +35,23 @@ $(document).ready(function() {
         } else if (percentage >= 75) {
           $('#info_dropdown').toggleClass('danger')
         }
+        $('#address_field').addClass('search-bar-border-radius')
+        $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').toggleClass('expand')
       })
     } else {
       if (address.substring(0,3) == 'bc1') {
         $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">Bech32 addresses not supported.</p>')
         $('#info_dropdown').toggleClass('danger')
+        $('#address_field').addClass('search-bar-border-radius')
+        $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').toggleClass('expand')
         console.log("Bech32 Addresses not supported")
       } else {
         $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">Address invalid.</p>')
         $('#info_dropdown').toggleClass('danger')
+        $('#address_field').addClass('search-bar-border-radius')
+        $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').toggleClass('expand')
       }
     }
