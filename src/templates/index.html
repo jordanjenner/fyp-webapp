@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Bit Predict{% endblock title %}
+
+{% block content %}
+<div class="container d-flex flex-column h-100 justify-content-center align-items-center">
+  <div class="row h-25 align-items-center">
+    <p class="font-weight-bold text-secondary logo-title">Bit Predict</p>
+  </div>
+  <div class="row h-50 w-100 justify-content-center align-items-center">
+    <div class="form-group w-75">
+      <div class="input-group">
+        <input type="text" class="form-control form-control-lg" placeholder="Bitcoin Address" aria-label="Bitcoin Address" aria-describedby="search-button">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" id="search-button">Search!</button>
+        </div>  
+      </div>
+      <div class="test-div"></div>
+    </div>
+  </div>
+  <div class="row h-25">
+
+  </div>
+</div>
+
+{% endblock content %}
