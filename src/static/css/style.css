@@ -28,14 +28,48 @@ body {
   border-radius: .3rem .3rem 0rem 0rem !important;
 }
 
-.test-div {
-  height: 50px;
-  border-width: 50px;
+.info-dropdown {
+  padding-left: 10px;
+  max-height: 0px;
   border: 1px solid #ced4da;
-  border-radius: .3rem;
-  background-color: green;
-  margin-top: -.3rem;
+  border-radius: 0rem 0rem .3rem .3rem;
+  margin-top: -4px;
+  overflow: hidden;
+  transition: max-height .5s ease;
 }
 
-#71FFD6
-#9FBCFF
+.info-text {
+  color: white;
+}
+
+.info-text.percent {
+  font-size: 100px;
+}
+
+.info-dropdown.expand {
+  max-height: 200px;
+}
+
+.info-dropdown.danger {
+  background: #FF416C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.info-dropdown.warning {
+  background: #F7971E;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.info-dropdown.working {
+  background: #4776E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.info-dropdown.success {
+  background: #a8ff78;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #78ffd6, #51cf55);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #78ffd6, #51cf55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
