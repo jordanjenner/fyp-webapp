@@ -42,12 +42,16 @@ body {
   color: white;
 }
 
+.info-dropdown-footer {
+  background-color: white;
+}
+
 .info-text.percent {
   font-size: 100px;
 }
 
 .info-dropdown.expand {
-  max-height: 200px;
+  max-height: 5000px;
 }
 
 .info-dropdown.danger {
