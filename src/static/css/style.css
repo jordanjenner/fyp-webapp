@@ -42,6 +42,10 @@ body {
   color: white;
 }
 
+.info-icon {
+  color: #6c757d;
+}
+
 .info-dropdown-footer {
   background-color: white;
 }
