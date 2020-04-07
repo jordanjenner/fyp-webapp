@@ -21,6 +21,6 @@ from api import views as apiViews
 
 urlpatterns = [
     path('', searchViews.index, name='index'),
-    path('api/analyse-address/<slug:address>/', apiViews.analyse_address, name='api_analyseaddress'),
+    path('api/analyse-address/', apiViews.analyse_address_view, name='api_analyseaddress'),
     path('admin/', admin.site.urls),
 ]
