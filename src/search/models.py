@@ -8,6 +8,9 @@ class Address(models.Model):
     date_created = models.DateTimeField()
     update_state = models.CharField(max_length=15)
 
+    def __str__(self):
+        return self.address
+
 class Runs(models.Model):
     address = models.ForeignKey('Address', on_delete=models.CASCADE)
     percentage = models.IntegerField()
