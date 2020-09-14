@@ -24,13 +24,32 @@
   100%{background-position:0% 50%}
 }
 
+@-webkit-keyframes BackgroundAnimation {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes BackgroundAnimation {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes BackgroundAnimation {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
 .index-form-group {
   width: 75% !important
 }
 
 body {
   background-image: linear-gradient(-130deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);
-
+  -webkit-animation: BackgroundAnimation 15s ease infinite;
+  -moz-animation: BackgroundAnimation 15s ease infinite;
+  animation: BackgroundAnimation 15s ease infinite;
+  background-size: 400% 400%;
 }
 
 .logo-title {
@@ -67,17 +86,18 @@ body {
 }
 
 .loading-bar {
+  overflow: hidden;
   padding-left: 7px;
-  padding-top: 3px;
+  padding-top: 2px;
   width: 0%;
   height: 100%;
   font-weight: 600;
   transition: width .6s ease 0s;
   background-size: 400% 400%;
   
-  -webkit-animation: LoadingAnimation 2s ease infinite;
-  -moz-animation: LoadingAnimation 2s ease infinite;
-  animation: LoadingAnimation 2s ease infinite;
+  -webkit-animation: LoadingAnimation 3s ease infinite;
+  -moz-animation: LoadingAnimation 3s ease infinite;
+  animation: LoadingAnimation 3s linear infinite;
 }
 
 .loading-bar.working {
@@ -92,11 +112,11 @@ body {
   background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
 table.info-table {
   width: 100%;
   text-align: center;
   border-collapse: collapse;
+  border-radius: .3rem;
 }
 
 table.info-table caption {
@@ -112,7 +132,23 @@ table.table-info td, table.table-info th {
 }
 
 table.info-table tr:nth-child(even) {
-  background: rgba(238, 238, 238, 0.418);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+table.info-table tbody tr:last-child td:first-child {
+  border-radius: 0rem 0rem .3rem 0rem;
+}
+
+table.info-table tbody tr:last-child td:last-child {
+  border-radius: 0rem 0rem .3rem 0rem;
+}
+
+table.info-table th:first-child {
+  border-radius: .3rem 0rem 0rem 0rem;
+}
+
+table.info-table th:last-child {
+  border-radius: 0rem .3rem 0rem 0rem;
 }
 
 table.info-table thead th {
@@ -120,6 +156,7 @@ table.info-table thead th {
   font-weight: normal;
   color: #FFFFFF;
   text-align: center;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .info-text {
