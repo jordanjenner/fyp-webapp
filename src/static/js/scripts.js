@@ -24,6 +24,7 @@ $(document).ready(function() {
 
   function loading_bar_width(percent) {
     $('#loading_bar').width('calc(' + percent + '% - 0px)')
+    $('#loading_bar').css("background-size", "400% 400%")
   }
 
   function loading_bar_message(message, error=false) {
@@ -54,8 +55,7 @@ $(document).ready(function() {
       var task_id = false
 
       $('#info_dropdown').append('<div id="info_loading" class="loading-div"></div>')
-      $('#info_loading').append('<div id="loading_background" class="loading-background"></div>')
-      $('#loading_background').append('<div id="loading_bar" class="loading-bar"></div>')
+      $('#info_loading').append('<div id="loading_bar" class="loading-bar"></div>')
 
       $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-start flex-nowrap"></div>')
       $('#info_dropdown_body').append('<div id="info_percentage_col" class=" text-center mr-5 ml-4"></div>')
@@ -79,8 +79,9 @@ $(document).ready(function() {
         data = await new Promise(r => {
           $.post('/api/analyse-address/', params).done(function(data){
             r(data)
-          })
+          })        
         })
+        console.log(data)
         $('#address_field').addClass('search-bar-border-radius')
         $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').addClass('expand')      
@@ -103,7 +104,7 @@ $(document).ready(function() {
         if (data.update_state == "rate_limited") {
           analysis_complete = true
           loading_bar_width(100)
-          loading_bar_message("Rate Limit Active. Please Try Again Later")
+          loading_bar_message("Rate Limit Active. Please Try Again Later", error=true)
           task_id = false
         }
 
@@ -168,7 +169,7 @@ $(document).ready(function() {
               
         } else {
           $('#info_dropdown').addClass('working')
-          $('#info_percentage_col').append('<p class="info-text info-flavour-text">No Score</p>')
+          $('#info_percentage_col').append('<p class="info-text info-flavour-text p-0 m-0">No Score</p>')
           $('#info_info_col').append('<div id="info_flavour_text" class="info-text"></div>')
           $('#info_flavour_text').append('<p class="m-0 text-uppercase info-flavour-text">We haven\'t seen this address before... Please wait while we gather more information.</p>')
         }
