@@ -84,8 +84,6 @@ class AddressAnalyser:
 
 class Evaluate:
     def __init__(self, n_stx, n_rtx, sent_tx_hashes, rcvd_tx_hashes):
-        
-        print(rcvd_tx_hashes)
 
         self.model = tf.keras.models.load_model(os.path.join(settings.BASE_DIR, "api/models/267-0.82/"))
 
@@ -96,12 +94,6 @@ class Evaluate:
 
         d = {'n_stx': n_stx, 'n_rtx': n_rtx, 'total_sent_hashes': sent_tx_hashes, 'total_recieved_hashes': rcvd_tx_hashes}
 
-        prediction = self.model.predict(d, steps=1, verbose=1, batch_size=128)
+        prediction = self.model.predict(d, steps=1, batch_size=128)
 
         self.prediction = int(round(prediction[0][0]*100))
-
-    def set_feature_columns(self, column_list):
-        for header in column_list:
-            self.feature_columns.append(
-                feature_column.numeric_column(header)
-            )
