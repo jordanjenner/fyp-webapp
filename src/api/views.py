@@ -24,9 +24,10 @@ def analyse_address_view(request, *args, **kwargs):
                 date_created=timezone.now()            
                 )
 
-            time_threshold = timezone.now() - timezone.timedelta(minutes=1)
+            time_threshold = timezone.now() - timezone.timedelta(hours=2)
 
-            recent_run = address_obj.runs_set.filter(date_time__gt=time_threshold).exists()
+            recent_run = address_obj.runs_set.filter(date_time__gt=time_threshold)
+            print(recent_run)
             last_updated = address_obj.last_updated
             if not recent_run and not task_running:
                 update_state = "fetching_data"
@@ -42,7 +43,7 @@ def analyse_address_view(request, *args, **kwargs):
                     ]
                 }
 
-            if task_running != False:
+            if task_running is not False:
                 json["task_id"] = task_running
                 task_running = True
 
