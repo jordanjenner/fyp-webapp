@@ -8,11 +8,28 @@
     <p class="font-weight-bold text-secondary logo-title">Bit Predict</p>
   </div>
   <div class="row h-50 w-100 justify-content-center align-items-center">
-    <div class="form-group w-75">
-      <div class="input-group ">
+    <div class="form-group w-75 d-none d-md-block">
+      <div class="input-group">
         <input id="address_field" type="text" class="form-control form-control-lg border-0" placeholder="Bitcoin Address" aria-label="Bitcoin Address" aria-describedby="search-button">
         <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" id="search_button">Search!</button>
+          <button class="btn btn-secondary" type="button" id="search_button">
+            <i class="fas fa-search"></i>
+            <span class="d-none d-sm-inline">Search!</span>
+          </button>
+        </div>  
+      </div>
+      <div id="info_dropdown" class="info-dropdown row p-0 mr-0 ml-0 border-0">
+
+      </div>
+    </div>
+    <div class="form-group w-100 d-block d-md-none">
+      <div class="input-group">
+        <input id="address_field" type="text" class="form-control form-control-lg border-0" placeholder="Bitcoin Address" aria-label="Bitcoin Address" aria-describedby="search-button">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" id="search_button">
+            <i class="fas fa-search"></i>
+            <span class="d-none d-sm-inline">Search!</span>
+          </button>
         </div>  
       </div>
       <div id="info_dropdown" class="info-dropdown row p-0 mr-0 ml-0 border-0">
