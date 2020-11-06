@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var csrftoken = getCookie('csrftoken')
+  const csrftoken = getCookie('csrftoken')
 
   $("#search_button").click(function() {
     $('#search_button').prop('disabled', true)
@@ -178,15 +178,7 @@ $(document).ready(function() {
       
 
     } else {
-      if (address.substring(0,3) == 'bc1') {
-        $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">Bech32 addresses not supported.</p>')
-        $('#info_dropdown').removeClass('working')
-        $('#info_dropdown').addClass('danger')
-        $('#address_field').addClass('search-bar-border-radius')
-        $('#search_button').addClass('search-button-border-radius')
-        $('#info_dropdown').toggleClass('expand')
-        console.log("Bech32 Addresses not supported")
-      } else if (address.length == 0) {
+      if (address.length == 0) {
         $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">No address entered.</p>')
         $('#info_dropdown').removeClass('working')
         $('#info_dropdown').addClass('danger')
@@ -205,15 +197,9 @@ $(document).ready(function() {
   }
 
   function validate_address(address) {
-    if (
-      (address.substring(0,1) == '1' || address.substring(0,1) == '3' || address.substring(0,3) == 'bc1') &&
-      (address.length >= 26 && address.length <= 35) &&
-      address.match("^[A-Za-z0-9]{26,35}$")
-    ) {
-      console.log(address.length)
+    if (address.match('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$') || address.match('^bc1[ac-hj-np-zAC-HJ-NP-Z02-9]{11,71}$')) {
       return true
     } else {
-      console.log(address.length)
       return false
     }
   }
