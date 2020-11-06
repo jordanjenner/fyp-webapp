@@ -57,8 +57,8 @@ $(document).ready(function() {
       $('#info_dropdown').append('<div id="info_loading" class="loading-div"></div>')
       $('#info_loading').append('<div id="loading_bar" class="loading-bar"></div>')
 
-      $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-start flex-nowrap"></div>')
-      $('#info_dropdown_body').append('<div id="info_percentage_col" class=" text-center mr-5 ml-4"></div>')
+      $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-center flex-md-nowrap"></div>')
+      $('#info_dropdown_body').append('<div id="info_percentage_col" class=" text-center mr-4 ml-4"></div>')
       $('#info_dropdown_body').append('<div id="info_info_col" class="w-100 d-flex m-2 align-items-center flex-column"></div>')
       
 
@@ -162,7 +162,7 @@ $(document).ready(function() {
           $('#info_info_col').append('<div id="info_flavour_text" class="info-text"></div>')
           $('#info_flavour_text').append('<p class="m-0 text-uppercase info-flavour-text">This address is ' + probablilty + 'malicious.</p>')
           $('#info_info_col').append('<div id="info_history" class="w-100 m-2 info-text"></div>')
-          $('#info_history').append('<table class="info-table info-text"><caption>Search History</caption><thead><tr><th scope="col">Percentage</th><th scope="col">Transactions</th><th scope="col">Date & Time (UTC/GMT)</th></tr></theah><tbody id="info_history_table"></tbody></table>')
+          $('#info_history').append('<table class="info-table info-text"><caption>Search History</caption><thead><tr><th scope="col">Percentage</th><th scope="col">Transactions</th><th scope="col">Date & Time (UTC)</th></tr></theah><tbody id="info_history_table"></tbody></table>')
           for (run of data.runs) {
             $('#info_history_table').append('<tr><td>' + run.percentage + '</td><td>' + run.transactions + '</td><td>' + run.date + '</td></tr>')
           }

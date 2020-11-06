@@ -54,7 +54,7 @@ body {
 
 .logo-title {
   font-family: Potra;
-  font-size: calc(35px + 6vw);
+  font-size: calc(35px + 5vw);
   padding: 20px;
   margin: 0;
   text-align: center;
@@ -62,6 +62,10 @@ body {
 
 .search-bar-remove-radius {
   border-radius: .3rem .3rem 0rem 0rem !important;
+}
+
+.search-mw {
+  max-width: 750px;
 }
 
 .info-dropdown {
@@ -155,6 +159,7 @@ table.info-table th:last-child {
 table.info-table thead th {
   font-size: 15px;
   font-weight: normal;
+  padding: 0px 3px;
   color: #FFFFFF;
   text-align: center;
   background: rgba(0, 0, 0, 0.1);
