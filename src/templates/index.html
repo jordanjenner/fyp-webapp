@@ -3,26 +3,12 @@
 {% block title %}Bit Predict{% endblock title %}
 
 {% block content %}
-<div class="container d-flex flex-column h-100 justify-content-center align-items-center">
-  <div class="row h-25 align-items-center">
+<div class="container d-flex flex-column justify-content-between flex-column align-items-center" style="min-height: 100vh;">
+  <div class="row align-items-center mb-auto">
     <p class="font-weight-bold text-secondary logo-title">Bit Predict</p>
   </div>
-  <div class="row h-50 w-100 justify-content-center align-items-center">
-    <div class="form-group w-75 d-none d-md-block">
-      <div class="input-group">
-        <input id="address_field" type="text" class="form-control form-control-lg border-0" placeholder="Bitcoin Address" aria-label="Bitcoin Address" aria-describedby="search-button">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" id="search_button">
-            <i class="fas fa-search"></i>
-            <span class="d-none d-sm-inline">Search!</span>
-          </button>
-        </div>  
-      </div>
-      <div id="info_dropdown" class="info-dropdown row p-0 mr-0 ml-0 border-0">
-
-      </div>
-    </div>
-    <div class="form-group w-100 d-block d-md-none">
+  <div class="row w-100 justify-content-center align-items-center mb-auto">
+    <div class="form-group w-100 search-mw">
       <div class="input-group">
         <input id="address_field" type="text" class="form-control form-control-lg border-0" placeholder="Bitcoin Address" aria-label="Bitcoin Address" aria-describedby="search-button">
         <div class="input-group-append">
@@ -37,8 +23,8 @@
       </div>
     </div>
   </div>
-  <div class="row h-25">
-
+  <div class="row align-items-end mt-auto">
+    <small class="text-muted text-center m-3">Note: This analysis is only accurate 82% of the time and shouldn't be used as conclusive evidence of maliciousness</small>
   </div>
 </div>
 
