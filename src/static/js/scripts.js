@@ -220,7 +220,7 @@ $(document).ready(function() {
     });
   }
 
-  function getCookie(name) { // get csrf token from cookie
+  function getCookie(name) { // get cookie by name
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
         var cookies = document.cookie.split(';');
