@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const csrftoken = getCookie('csrftoken')
+  const csrftoken = getCookie('csrftoken') //csrf token required to submit forms
 
   $("#search_button").click(function() {
     $('#search_button').prop('disabled', true)
@@ -53,7 +53,7 @@ $(document).ready(function() {
     if (validate_address(address)) {
       var analysis_complete = false
       var task_id = false
-
+      // create info dropdown
       $('#info_dropdown').append('<div id="info_loading" class="loading-div"></div>')
       $('#info_loading').append('<div id="loading_bar" class="loading-bar"></div>')
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
       $('#info_loading').hide()
 
-      while (!analysis_complete) {
+      while (!analysis_complete) { //continue requesting data until address has been analysed
         params = {csrfmiddlewaretoken: csrftoken, address: address}
         if (task_id != false) {
           params.task_id = task_id
@@ -81,7 +81,6 @@ $(document).ready(function() {
             r(data)
           })        
         })
-        console.log(data)
         $('#address_field').addClass('search-bar-border-radius')
         $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').addClass('expand')      
@@ -93,6 +92,7 @@ $(document).ready(function() {
         $('#info_dropdown').removeClass('warning')
         $('#info_dropdown').removeClass('success')
 
+        // set loading bar width depending on analysis state
         if (data.update_state == "completed") {
           analysis_complete = true
           loading_bar_width(100)
@@ -109,7 +109,7 @@ $(document).ready(function() {
         }
 
         if (data.update_state == "address_created") {
-          loading_bar_width(20)
+          loading_bar_width(30)
           loading_bar_message("Creating Address")
           $('#info_loading').show()
         }
@@ -133,7 +133,7 @@ $(document).ready(function() {
           $('#info_loading').show()
         }
 
-        if (data.runs.length > 0) {
+        if (data.runs.length > 0) { // Choose flavour text based on percentage
           percentage = Math.round(data.runs[0].percentage)
           if (percentage > 99) {
             var probablilty = ''
@@ -157,7 +157,7 @@ $(document).ready(function() {
             var probablilty = 'not '
             $('#info_dropdown').addClass('success')
           }
-
+          // add info to dropdown once it is available
           $('#info_percentage_col').append('<p id="percent" class="info-text percent">' + percentage + '%</p>')
           $('#info_info_col').append('<div id="info_flavour_text" class="info-text"></div>')
           $('#info_flavour_text').append('<p class="m-0 text-uppercase info-flavour-text">This address is ' + probablilty + 'malicious.</p>')
@@ -177,7 +177,7 @@ $(document).ready(function() {
       }
       
 
-    } else {
+    } else { // address error messages
       if (address.length == 0) {
         $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">No address entered.</p>')
         $('#info_dropdown').removeClass('working')
@@ -204,7 +204,7 @@ $(document).ready(function() {
     }
   }
 
-  function collapse_dropdown() {
+  function collapse_dropdown() { //close dropdown button
     $('#info_dropdown_footer').unbind('click')
     $('#info_dropdown').toggleClass('expand')
 
@@ -220,7 +220,7 @@ $(document).ready(function() {
     });
   }
 
-  function getCookie(name) {
+  function getCookie(name) { // get csrf token from cookie
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
         var cookies = document.cookie.split(';');
