@@ -1,0 +1,40 @@
+version: '3'
+    
+services:
+  bitpredict:
+    build: .
+    hostname: bitpredict
+    networks: 
+      - frontend
+      - internal
+    ports:
+      - "80:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - "redis"
+  bitpredict_worker:
+    build: .
+    hostname: bitpredict
+    networks: 
+      - frontend
+      - internal
+    command: celery -A bitpredict worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - "redis"
+  redis:
+    image: redis:5.0.10
+    hostname: redis
+    networks: 
+      - internal
+      - frontend
+    ports: 
+      - "6379:6379"
+networks:
+  frontend:
+    external: true
+  internal:
+    external: false
