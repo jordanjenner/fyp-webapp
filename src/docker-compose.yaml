@@ -19,7 +19,7 @@ services:
     hostname: bitpredict-worker
     networks: 
       - internal
-    command: celery -A bitpredict worker -l info
+    command: celery -A bitpredict worker -l info --uid celery
     volumes:
       - .:/code
     depends_on:

@@ -15,3 +15,4 @@ library_dirs = /usr/lib/openblas/lib\n\
 include_dirs = /usr/lib/openblas/lib'  >> site.cfg 
 RUN pip install -r requirements.txt
 COPY . /code/
+RUN adduser --disabled-password --gecos '' celery
