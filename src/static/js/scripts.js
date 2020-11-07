@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const csrftoken = getCookie('csrftoken') //csrf token required to submit forms
+  const csrftoken = $('input[name="csrfmiddlewaretoken"]').val() //csrf token required to submit forms
 
   $("#search_button").click(function() {
     $('#search_button').prop('disabled', true)
