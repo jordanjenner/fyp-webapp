@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var csrftoken = getCookie('csrftoken')
+  const csrftoken = $('input[name="csrfmiddlewaretoken"]').val() //csrf token required to submit forms
 
   $("#search_button").click(function() {
     $('#search_button').prop('disabled', true)
@@ -53,12 +53,12 @@ $(document).ready(function() {
     if (validate_address(address)) {
       var analysis_complete = false
       var task_id = false
-
+      // create info dropdown
       $('#info_dropdown').append('<div id="info_loading" class="loading-div"></div>')
       $('#info_loading').append('<div id="loading_bar" class="loading-bar"></div>')
 
-      $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-start flex-nowrap"></div>')
-      $('#info_dropdown_body').append('<div id="info_percentage_col" class=" text-center mr-5 ml-4"></div>')
+      $('#info_dropdown').append('<div id="info_dropdown_body" class="row w-100 m-3 align-items-center justify-content-center flex-md-nowrap"></div>')
+      $('#info_dropdown_body').append('<div id="info_percentage_col" class=" text-center mr-4 ml-4"></div>')
       $('#info_dropdown_body').append('<div id="info_info_col" class="w-100 d-flex m-2 align-items-center flex-column"></div>')
       
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 
       $('#info_loading').hide()
 
-      while (!analysis_complete) {
+      while (!analysis_complete) { //continue requesting data until address has been analysed
         params = {csrfmiddlewaretoken: csrftoken, address: address}
         if (task_id != false) {
           params.task_id = task_id
@@ -81,7 +81,6 @@ $(document).ready(function() {
             r(data)
           })        
         })
-        console.log(data)
         $('#address_field').addClass('search-bar-border-radius')
         $('#search_button').addClass('search-button-border-radius')
         $('#info_dropdown').addClass('expand')      
@@ -93,6 +92,7 @@ $(document).ready(function() {
         $('#info_dropdown').removeClass('warning')
         $('#info_dropdown').removeClass('success')
 
+        // set loading bar width depending on analysis state
         if (data.update_state == "completed") {
           analysis_complete = true
           loading_bar_width(100)
@@ -109,7 +109,7 @@ $(document).ready(function() {
         }
 
         if (data.update_state == "address_created") {
-          loading_bar_width(20)
+          loading_bar_width(30)
           loading_bar_message("Creating Address")
           $('#info_loading').show()
         }
@@ -133,7 +133,7 @@ $(document).ready(function() {
           $('#info_loading').show()
         }
 
-        if (data.runs.length > 0) {
+        if (data.runs.length > 0) { // Choose flavour text based on percentage
           percentage = Math.round(data.runs[0].percentage)
           if (percentage > 99) {
             var probablilty = ''
@@ -157,12 +157,12 @@ $(document).ready(function() {
             var probablilty = 'not '
             $('#info_dropdown').addClass('success')
           }
-
+          // add info to dropdown once it is available
           $('#info_percentage_col').append('<p id="percent" class="info-text percent">' + percentage + '%</p>')
           $('#info_info_col').append('<div id="info_flavour_text" class="info-text"></div>')
           $('#info_flavour_text').append('<p class="m-0 text-uppercase info-flavour-text">This address is ' + probablilty + 'malicious.</p>')
           $('#info_info_col').append('<div id="info_history" class="w-100 m-2 info-text"></div>')
-          $('#info_history').append('<table class="info-table info-text"><caption>Search History</caption><thead><tr><th scope="col">Percentage</th><th scope="col">Transactions</th><th scope="col">Date & Time (UTC/GMT)</th></tr></theah><tbody id="info_history_table"></tbody></table>')
+          $('#info_history').append('<table class="info-table info-text"><caption>Search History</caption><thead><tr><th scope="col">Percentage</th><th scope="col">Transactions</th><th scope="col">Date & Time (UTC)</th></tr></theah><tbody id="info_history_table"></tbody></table>')
           for (run of data.runs) {
             $('#info_history_table').append('<tr><td>' + run.percentage + '</td><td>' + run.transactions + '</td><td>' + run.date + '</td></tr>')
           }
@@ -177,16 +177,8 @@ $(document).ready(function() {
       }
       
 
-    } else {
-      if (address.substring(0,3) == 'bc1') {
-        $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">Bech32 addresses not supported.</p>')
-        $('#info_dropdown').removeClass('working')
-        $('#info_dropdown').addClass('danger')
-        $('#address_field').addClass('search-bar-border-radius')
-        $('#search_button').addClass('search-button-border-radius')
-        $('#info_dropdown').toggleClass('expand')
-        console.log("Bech32 Addresses not supported")
-      } else if (address.length == 0) {
+    } else { // address error messages
+      if (address.length == 0) {
         $('#info_dropdown').append('<p class="info-text mt-2 mb-2 ml-2">No address entered.</p>')
         $('#info_dropdown').removeClass('working')
         $('#info_dropdown').addClass('danger')
@@ -205,20 +197,14 @@ $(document).ready(function() {
   }
 
   function validate_address(address) {
-    if (
-      (address.substring(0,1) == '1' || address.substring(0,1) == '3' || address.substring(0,3) == 'bc1') &&
-      (address.length >= 26 && address.length <= 35) &&
-      address.match("^[A-Za-z0-9]{26,35}$")
-    ) {
-      console.log(address.length)
+    if (address.match('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$') || address.match('^bc1[ac-hj-np-zAC-HJ-NP-Z02-9]{11,71}$')) {
       return true
     } else {
-      console.log(address.length)
       return false
     }
   }
 
-  function collapse_dropdown() {
+  function collapse_dropdown() { //close dropdown button
     $('#info_dropdown_footer').unbind('click')
     $('#info_dropdown').toggleClass('expand')
 
@@ -234,7 +220,7 @@ $(document).ready(function() {
     });
   }
 
-  function getCookie(name) {
+  function getCookie(name) { // get cookie by name
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
         var cookies = document.cookie.split(';');

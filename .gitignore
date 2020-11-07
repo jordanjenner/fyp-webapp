@@ -4,3 +4,4 @@ include/
 src/bitpredict/config.py
 *.pyc
 src/db.sqlite3
+src/bitpredict/settings.py

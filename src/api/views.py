@@ -12,7 +12,6 @@ def analyse_address_view(request, *args, **kwargs):
         address = request.POST.get('address', None)
         task_running = request.POST.get('task_id', False)
         
-        print(task_running)
         if request.method == "POST" or request.method == "GET":
             if Address.objects.filter(address=address):
                 address_obj = Address.objects.get(address=address)
@@ -27,7 +26,6 @@ def analyse_address_view(request, *args, **kwargs):
             time_threshold = timezone.now() - timezone.timedelta(hours=2)
 
             recent_run = address_obj.runs_set.filter(date_time__gt=time_threshold)
-            print(recent_run)
             last_updated = address_obj.last_updated
             if not recent_run and not task_running:
                 update_state = "fetching_data"
@@ -48,7 +46,6 @@ def analyse_address_view(request, *args, **kwargs):
                 task_running = True
 
             if not recent_run and not task_running:
-                print("adding task")
                 task = analyse_address.delay(address)
                 json["task_id"] = task.id
             

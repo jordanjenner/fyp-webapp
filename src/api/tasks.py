@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 import random
 from celery.decorators import task
 from search.models import Address, Runs
-from django.utils import timezone#
+from django.utils import timezone
 import time
 
 @task(name="analyse_address")
@@ -16,7 +16,6 @@ def analyse_address(address):
             last_updated=timezone.now(),
             update_state="address_created",
             date_created=timezone.now()
-            
             )
     address_obj.update_state = "fetching_data"
     address_obj.save()
